@@ -12,7 +12,7 @@ class DurationTest {
 	@Test
 	void test() {
 		log.debug("Duration.ofSeconds(2): {}", Duration.ofSeconds(2));
-		log.debug("Duration.ofSeconds(2).toSeconds(): {}", Duration.ofSeconds(2).toSeconds());
+		//log.debug("Duration.ofSeconds(2).toSeconds(): {}", Duration.ofSeconds(2).toSeconds());
 	}
 
 }
