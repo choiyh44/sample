@@ -3,6 +3,8 @@
  */
 package kr.co.ensmart.sample.test;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -15,9 +17,12 @@ import lombok.ToString;
  */
 @Getter
 @Setter
-@ToString
-public class Sample {
+@ToString(callSuper=true)
+public class Sample extends BaseCommonEntity {
     private Long id;
+    @Uppercase
     private String name;
     private String description;
+    private SampleDetail sampleDetail;
+    private List<SampleDetail> sampleDetailList;
 }

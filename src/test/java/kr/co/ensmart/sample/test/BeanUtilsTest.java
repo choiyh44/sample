@@ -1,5 +1,8 @@
 package kr.co.ensmart.sample.test;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 
@@ -58,4 +61,29 @@ class BeanUtilsTest {
     		private String model;
     		private Integer modelYear;
     	}
+
+        @Test
+        void copyProperties() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+            Sample sample = new Sample();
+            ((Sample)sample).setId(101L);
+            ((Sample)sample).setName("Sample name");
+            ((Sample)sample).setDescription("샘플설명");
+            sample.setSampleDetail(SampleDetail.builder().id(0L).detail("상세0").build());
+            
+            sample.setSampleDetailList(new ArrayList<>());
+            sample.getSampleDetailList().add(SampleDetail.builder().id(1L).detail("상세1").build());
+            sample.getSampleDetailList().add(SampleDetail.builder().id(2L).detail("상세2").build());
+
+            Object sample2 = new Sample();
+
+            BeanUtils.copyProperties(sample, sample2);
+            sample.getSampleDetail().setDetail("상세0-1");
+            sample.getSampleDetailList().get(0).setDetail("상세2-1");
+            
+            log.info("sample: {}", sample);
+            log.info("sample2: {}", sample2);
+
+        }
+        
+
 }
