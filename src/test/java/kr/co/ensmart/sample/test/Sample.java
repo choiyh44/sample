@@ -5,7 +5,10 @@ package kr.co.ensmart.sample.test;
 
 import java.util.List;
 
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
@@ -18,6 +21,9 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString(callSuper=true)
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class Sample extends BaseCommonEntity {
     private Long id;
     @Uppercase

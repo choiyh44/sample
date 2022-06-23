@@ -101,7 +101,7 @@ public class BeanUtilsOfCommonsTest {
         sample.getSampleDetailList().add(SampleDetail.builder().id(1L).detail("상세1").build());
         sample.getSampleDetailList().add(SampleDetail.builder().id(2L).detail("상세2").build());
 
-        Object sample2 = new Sample();
+        Sample sample2 = new Sample();
 
         BeanUtils.copyProperties(sample2, sample);
         sample.getSampleDetail().setDetail("상세0-1");
@@ -110,6 +110,19 @@ public class BeanUtilsOfCommonsTest {
         log.info("sample: {}", sample);
         log.info("sample2: {}", sample2);
 
+    }
+    
+    @Test
+    void getProperties() throws IllegalAccessException, InvocationTargetException, NoSuchMethodException {
+        Sample sample = new Sample();
+        sample.setId(101L);
+        sample.setName("Sample name");
+        sample.setDescription("샘플설명");
+        
+        log.info("sample siteNo: {}", BeanUtils.getProperty(sample, "siteNo"));
+        
+        BeanUtils.setProperty(sample, "siteNo", 2);
+        log.info("sample siteNo: {}", BeanUtils.getProperty(sample, "siteNo"));
     }
     
 }
