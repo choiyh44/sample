@@ -1,0 +1,27 @@
+<html>
+<head>
+</head>
+<body>
+heic이미지: <img src="./IMG_6426.HEIC" />
+하하하 안되네.
+<script src="./index.js" ></script>
+<script>
+async function convertToHeic(url) {
+  const output = await fetch(url)
+    .then(async (data) => {
+      const buffer = Buffer.from(await data.arrayBuffer())
+      return heicConvert({ buffer, format: 'PNG' })
+    })
+
+  const imgBase64 = btoa(
+    output.reduce((data, byte) => `${data}${String.fromCharCode(byte)}`, '')
+  )
+  
+  const el = window.document.createElement('img')
+  el.src = `data:image/png;base64,${imgBase64}`
+}
+
+convertToHeic('./IMG_6426.HEIC');
+</script>
+</body>
+</html>
